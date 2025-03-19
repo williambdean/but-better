@@ -8,7 +8,7 @@ authors = [
     "Ulf Aslak Lai <ulfaslak@gmail.com>",
     "Will Dean <wd60622@gmail.com>", 
 ]
-repository = "https://github.com/wd60622/but-better/"
+repository = "https://github.com/williambdean/but-better/"
 readme = "README.md"
 packages = [
     { include = "but_better" }, 
