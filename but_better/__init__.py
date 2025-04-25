@@ -33,6 +33,15 @@ def in_jupyter_notebook() -> bool:
     return get_ipython().__class__.__name__ == "ZMQInteractiveShell"
 
 
+def in_marimo_notebook() -> bool:
+    try:
+        import marimo as mo
+
+        return mo.running_in_notebook()
+    except ImportError:
+        return False
+
+
 def but_better(video_id: str, stop_on_completion: bool = True, **youtube_kwargs):
     """Wrap any function with this decorator to play a YouTube video while it runs.
 
@@ -63,8 +72,11 @@ def but_better(video_id: str, stop_on_completion: bool = True, **youtube_kwargs)
         ```
 
     """
-    if not in_jupyter_notebook():
-        warnings.warn("This decorator only works in Jupyter notebooks.", UserWarning)
+    if not in_jupyter_notebook() and not in_marimo_notebook():
+        warnings.warn(
+            "This decorator only works in Jupyter or marimo notebooks.",
+            UserWarning,
+        )
         return lambda func: func
 
     if "allow_autoplay" not in youtube_kwargs:
