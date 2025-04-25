@@ -1,19 +1,15 @@
-[tool.poetry]
+[project]
 name = "but-better"
 version = "0.1.0"
 description = "Your code but better"
 authors = [
-    "Carlos Trujillo <carlos.trujillo@pymc-labs.com>",
-    "Niall Oulton <niall.oulton@1749.io>",
-    "Ulf Aslak Lai <ulfaslak@gmail.com>",
-    "Will Dean <wd60622@gmail.com>", 
+    { name = "Carlos Trujillo", email = "carlos.trujillo@pymc-labs.com" },
+    { name = "Niall Oulton", email = "niall.oulton@1749.io" },
+    { name = "Ulf Aslak Lai", email = "ulfaslak@gmail.com" },
+    { name = "Will Dean", email = "wd60622@gmail.com" },
 ]
-repository = "https://github.com/williambdean/but-better/"
+requires-python = ">=3.9"
 readme = "README.md"
-packages = [
-    { include = "but_better" }, 
-    { include = "but_better/py.typed" },
-]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -23,16 +19,34 @@ classifiers = [
     "Topic :: Utilities",
     "Topic :: Scientific/Engineering",
 ]
+dependencies = ["ipython"]
 
-[tool.poetry.dependencies]
-python = ">=3.9"
-ipython = "*"
+[project.urls]
+Repository = "https://github.com/williambdean/but-better/"
 
-[tool.poetry.group.dev.dependencies]
-jupyter = "^1.0.0"
-rich = "^13.7.1"
-pytest = "^8.2.0"
-pytest-cov = "^5.0.0"
+[dependency-groups]
+dev = [
+    "jupyter>=1.0.0,<2",
+    "rich>=13.7.1,<14",
+    "pytest>=8.2.0,<9",
+    "pytest-cov>=5.0.0,<6",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "but_better",
+    "but_better/py.typed",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+    "but_better",
+    "but_better/py.typed",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.pytest.ini_options]
 minversion = 6.0
@@ -46,7 +60,3 @@ exclude = []
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
 "**/tests/*" = ["S101"]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
