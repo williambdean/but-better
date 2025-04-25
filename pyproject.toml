@@ -30,6 +30,7 @@ dev = [
     "rich>=13.7.1,<14",
     "pytest>=8.2.0,<9",
     "pytest-cov>=5.0.0,<6",
+    "marimo>=0.13.2",
 ]
 
 [tool.hatch.build.targets.sdist]
