@@ -1,6 +1,6 @@
 [project]
 name = "but-better"
-version = "0.2.0"
+version = "0.3.0"
 description = "Your code but better"
 authors = [
     { name = "Carlos Trujillo", email = "carlos.trujillo@pymc-labs.com" },
