@@ -1,6 +1,7 @@
 from IPython import get_ipython
 from IPython.display import display, YouTubeVideo
 from IPython.core.display import Javascript
+import re
 from functools import wraps
 from urllib import parse
 import warnings
@@ -42,11 +43,25 @@ def in_marimo_notebook() -> bool:
         return False
 
 
-def but_better(video_id: str, stop_on_completion: bool = True, **youtube_kwargs):
+def is_url(url_string):
+    """Checks if a string is a valid URL using regular expressions.
+
+    Args:
+      url_string: The string to check.
+
+    Returns:
+      True if the string is a valid URL, False otherwise.
+    """
+    regex = r"^(https?://)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/\S*)?$"
+    match = re.match(regex, url_string)
+    return bool(match)
+
+
+def but_better(video: str, stop_on_completion: bool = True, **youtube_kwargs):
     """Wrap any function with this decorator to play a YouTube video while it runs.
 
     Args:
-        video_id (str): The YouTube video ID.
+        video (str): The YouTube video ID or URL.
         stop_on_completion (bool): Whether to stop the video when the function completes.
         **youtube_kwargs: Additional keyword arguments to pass to `IPython.display.YouTubeVideo`.
 
@@ -81,6 +96,8 @@ def but_better(video_id: str, stop_on_completion: bool = True, **youtube_kwargs)
 
     if "allow_autoplay" not in youtube_kwargs:
         youtube_kwargs["allow_autoplay"] = True
+
+    video_id = video if not is_url(video) else parse_youtube_url(video)
 
     def decorator(func):
         @wraps(func)
