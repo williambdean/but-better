@@ -2,6 +2,7 @@ from IPython import get_ipython
 from IPython.display import display, YouTubeVideo
 from IPython.core.display import Javascript
 import re
+import random
 from functools import wraps
 from urllib import parse
 import warnings
@@ -21,8 +22,10 @@ def parse_youtube_url(url: str) -> str:
     Examples:
         Get the video ID from a URL.
 
+        ```python
         parse_youtube_url("https://www.youtube.com/watch?v=z3SEc70eQYE")
         # "z3SEc70eQYE"
+        ```
 
     """
     url_data = parse.urlparse(url)
@@ -123,9 +126,36 @@ def but_better(video: str, stop_on_completion: bool = True, **youtube_kwargs):
     return decorator
 
 
-elevator = but_better("xNjyG8S4_kI")
-favorite_customer = but_better("mwgcK4E_RU0")
-gasolina = but_better("3tw2P65wv5E")
-gotcha = but_better("dQw4w9WgXcQ")
-phillies_hype_song = but_better("z3SEc70eQYE")
-ten_hour_fireplace = but_better("L_LUpnjgPso")
+PREDEFINED_VIDEOS = {
+    "elevator": "xNjyG8S4_kI",
+    "favorite_customer": "mwgcK4E_RU0",
+    "gasolina": "3tw2P65wv5E",
+    "gotcha": "dQw4w9WgXcQ",
+    "phillies_hype_song": "z3SEc70eQYE",
+    "ten_hour_fireplace": "L_LUpnjgPso",
+}
+
+
+def random_video():
+    """Return a random video from the predefined list.
+
+    Examples:
+        Get a random video from the predefined list.
+
+        ```python
+        from but_better import random_video
+
+        @random_video
+        def your_function():
+            ...
+        ```
+    """
+    return but_better(random.choice(list(PREDEFINED_VIDEOS.values())))
+
+
+elevator = but_better(PREDEFINED_VIDEOS["elevator"])
+favorite_customer = but_better(PREDEFINED_VIDEOS["favorite_customer"])
+gasolina = but_better(PREDEFINED_VIDEOS["gasolina"])
+gotcha = but_better(PREDEFINED_VIDEOS["gotcha"])
+phillies_hype_song = but_better(PREDEFINED_VIDEOS["phillies_hype_song"])
+ten_hour_fireplace = but_better(PREDEFINED_VIDEOS["ten_hour_fireplace"])
