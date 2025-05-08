@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        var scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          var element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          var hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          var newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((entries) => {
+          setHeight();
+        });
+        resizeObserver.observe(obj.contentWindow.document.body);
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <marimo-mode data-mode='edit' hidden></marimo-mode>
+    <marimo-version data-version='0.13.2' hidden></marimo-version>
+    <marimo-user-config data-config='{"completion": {"activate_on_typing": true, "copilot": false}, "display": {"default_width": "medium", "code_editor_font_size": 18, "default_table_page_size": 10, "cell_output": "above", "theme": "light", "dataframes": "rich"}, "formatting": {"line_length": 79}, "keymap": {"preset": "default", "overrides": {}}, "runtime": {"auto_instantiate": true, "auto_reload": "off", "reactive_tests": true, "on_cell_change": "autorun", "watcher_on_save": "lazy", "output_max_bytes": 8000000, "std_stream_max_bytes": 1000000}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "package_management": {"manager": "uv"}, "server": {"browser": "default", "follow_symlink": false}, "language_servers": {"pylsp": {"enabled": true, "enable_mypy": true, "enable_ruff": true, "enable_flake8": false, "enable_pydocstyle": false, "enable_pylint": false, "enable_pyflakes": false}}, "snippets": {"custom_paths": [], "include_default_snippets": true}}' data-overrides='{}' hidden></marimo-user-config>
+    <marimo-app-config data-config='{"width": "medium", "sql_output": "auto"}' hidden></marimo-app-config>
+    <marimo-server-token data-token='123' hidden></marimo-server-token>
+    <title>demo</title>
+    <script type="module" crossorigin src="./assets/index-CBYlZPe-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DQ-mLFwY.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="" data-show-code="false">import%20marimo%0A%0A__generated_with%20%3D%20%220.13.2%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20_(PREDEFINED_VIDEOS%2C%20mo)%3A%0A%20%20%20%20mo.md(%0A%20%20%20%20%20%20%20%20rf%22%22%22%0A%20%20%20%20%20%20%20%20%23%20Your%20code%20but%20better%0A%0A%0A%20%20%20%20%20%20%20%20%23%23%20Installation%0A%0A%20%20%20%20%20%20%20%20Find%20the%20package%20on%20%5BPyPI%5D(https%3A%2F%2Fpypi.org%2Fproject%2Fbut-better%2F)%3A%20%0A%0A%20%20%20%20%20%20%20%20%60%60%60bash%0A%20%20%20%20%20%20%20%20uv%20add%20but-better%0A%20%20%20%20%20%20%20%20%60%60%60%0A%0A%20%20%20%20%20%20%20%20%23%23%20Usage%0A%0A%20%20%20%20%20%20%20%20Use%20the%20%60but_better%60%20decorator%20to%20kill%20the%20time%20during%20long%20function%20runs%3A%20%0A%0A%20%20%20%20%20%20%20%20%60%60%60python%0A%20%20%20%20%20%20%20%20from%20but_better%20import%20but_better%0A%0A%20%20%20%20%20%20%20%20%40but_better(%22%3Cany-youtube-id-or-url%3E%22)%0A%20%20%20%20%20%20%20%20def%20your_slow_function()%3A%20%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%60%60%60%0A%0A%20%20%20%20%20%20%20%20Wrap%20someone%20else's%20function%20as%20well%3A%0A%0A%20%20%20%20%20%20%20%20%60%60%60python%0A%20%20%20%20%20%20%20%20from%20their_module%20import%20their_function%0A%0A%20%20%20%20%20%20%20%20their_function_but_butter%20%3D%20but_better(%22%3Cany-youtube-id-or-url%3E%22)(their_function)%0A%20%20%20%20%20%20%20%20%60%60%60%0A%0A%20%20%20%20%20%20%20%20Can't%20choose%3F%20Use%20a%20prefined%20video%3A%0A%0A%20%20%20%20%20%20%20%20%60%60%60python%0A%20%20%20%20%20%20%20%20from%20but_better%20import%20%7B%22%2C%20%22.join(PREDEFINED_VIDEOS.keys())%7D%0A%20%20%20%20%20%20%20%20%60%60%60%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20from%20but_better%20import%20gotcha%2C%20but_better%2C%20PREDEFINED_VIDEOS%0A%0A%20%20%20%20return%20PREDEFINED_VIDEOS%2C%20but_better%2C%20gotcha%0A%0A%0A%40app.cell%0Adef%20_(gotcha)%3A%0A%20%20%20%20import%20time%0A%0A%20%20%20%20%40gotcha%0A%20%20%20%20def%20slow_function_but_better()%3A%0A%20%20%20%20%20%20%20%20time.sleep(10)%20%20%23%20Simulate%20a%20slow%20function%0A%20%20%20%20%20%20%20%20return%20%22Function%20finished!%22%0A%0A%20%20%20%20return%20slow_function_but_better%2C%20time%0A%0A%0A%40app.cell%0Adef%20_(slow_function_but_better)%3A%0A%20%20%20%20slow_function_but_better()%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(but_better%2C%20time)%3A%0A%20%20%20%20youtube_url%20%3D%20%22https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DE1bo_G6vncg%22%0A%20%20%20%20fire_and_waves%20%3D%20but_better(youtube_url)%0A%0A%20%20%20%20def%20another_slow_function()%3A%0A%20%20%20%20%20%20%20%20time.sleep(10)%0A%20%20%20%20%20%20%20%20return%20%22Another%20function%20finished!%22%0A%0A%20%20%20%20slow_function_but_calmer%20%3D%20fire_and_waves(another_slow_function)%0A%20%20%20%20return%20(slow_function_but_calmer%2C)%0A%0A%0A%40app.cell%0Adef%20_(slow_function_but_calmer)%3A%0A%20%20%20%20slow_function_but_calmer()%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%0A%20%20%20%20return%20(mo%2C)%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
